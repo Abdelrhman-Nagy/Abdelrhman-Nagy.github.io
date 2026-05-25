@@ -25,27 +25,32 @@ const projectDetails: Record<string, { title: string, description: string, tech:
   "Rabet": {
     "title": "Rabet",
     "description": "A comprehensive mobile application built with Flutter and a .NET Backend, designed for seamless user experience and robust data handling.",
-    "tech": ["Flutter", ".NET", "C#", "Dart"]
+    "tech": ["Flutter", "iOS", "Android", ".NET", "C#", "Dart"]
   },
   "News": {
     "title": "News App",
     "description": "A fast and responsive news delivery application providing real-time updates and categorized articles using a solid .NET infrastructure.",
-    "tech": ["Flutter", ".NET", "REST APIs"]
+    "tech": ["Flutter", "iOS", "Android", ".NET", "REST APIs"]
   },
   "Hr": {
     "title": "HR App",
     "description": "An internal human resources management tool facilitating employee tracking, attendance, and request management.",
-    "tech": ["Flutter", ".NET", "SQL Server"]
+    "tech": ["Flutter", "iOS", "Android", ".NET", "SQL Server"]
   },
-  "Souq": {
-    "title": "Souq App",
-    "description": "A modern e-commerce mobile platform offering intuitive searching, cart management, and secure checkout processes.",
-    "tech": ["Flutter", ".NET", "Payment UI"]
+  "Souq-Customer": {
+    "title": "Souq Customer App",
+    "description": "A modern e-commerce mobile platform offering intuitive searching, cart management, and secure checkout processes for end users.",
+    "tech": ["Flutter", "iOS", "Android", ".NET", "Payment UI"]
+  },
+  "Souq-Seller": {
+    "title": "Souq Seller App",
+    "description": "A comprehensive dashboard and management app for sellers to track orders, manage inventory, and monitor analytics.",
+    "tech": ["Flutter", "iOS", "Android", ".NET", "Analytics"]
   },
   "CoffeShop": {
     "title": "CoffeeShop App",
     "description": "A sleek and engaging ordering app for a coffee shop, enabling users to customize drinks, view menus, and place orders smoothly.",
-    "tech": ["Flutter", ".NET", "Animations"]
+    "tech": ["Flutter", "iOS", "Android", ".NET", "Animations"]
   }
 };
 
@@ -77,7 +82,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     const details = projectDetails[folder] || {
         title: folder,
         description: `Project ${folder} description.`,
-        tech: ["Flutter", ".NET"]
+        tech: ["Flutter", "iOS", "Android"]
     };
 
     return {
@@ -91,7 +96,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
   }).filter(Boolean) as Project[];
 
   // Strictly order projects as requested
-  const order = ["rabet", "news", "hr", "souq", "coffeshop"];
+  const order = ["rabet", "souq-customer", "souq-seller", "news", "hr", "coffeshop"];
   projects.sort((a, b) => {
     const aIndex = order.indexOf(a.id);
     const bIndex = order.indexOf(b.id);
@@ -102,9 +107,9 @@ export async function getPortfolioData(): Promise<PortfolioData> {
   return {
     personalInfo: {
       name: "Abdelrhman Nagy",
-      title: "Flutter Developer | .NET Backend",
-      tagline: "Building robust, scalable mobile applications and powerful backend services.",
-      about: "I am a passionate mobile and backend developer specializing in creating seamless user experiences with Flutter and building robust architectures with .NET. I focus on developing high-quality, scalable applications that solve real-world problems.",
+      title: "Mobile Developer | Flutter | iOS | Android",
+      tagline: "Building polished, scalable, and modern mobile applications with a strong focus on performance and user experience.",
+      about: "I am a senior mobile developer specializing in creating seamless, high-performance applications with Flutter. I focus on delivering premium user experiences, robust architectures, and scalable solutions for iOS and Android.",
     },
     projects
   };
