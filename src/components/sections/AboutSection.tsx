@@ -16,17 +16,26 @@ export function AboutSection() {
         
         <h2 className="text-3xl md:text-5xl font-bold font-display tracking-tight mb-8">About Me</h2>
         
-        <div className="space-y-6 text-lg md:text-xl text-zinc-400 leading-relaxed">
-          <p>
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.2 } }
+          }}
+          className="space-y-6 text-lg md:text-xl text-charcoal/80 dark:text-zinc-400 leading-relaxed relative z-10"
+        >
+          <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
             Experienced Mobile App Developer adept in all stages of advanced mobile development. Knowledgeable in user interface, testing, and debugging processes.
-          </p>
-          <p>
-            Bringing forth expertise in design, installation, testing and maintenance of Mobile Apps. Equipped with a diverse and promising skill-set including <strong className="text-white font-medium">Flutter, Dart, Swift, Java, and .NET Core</strong>.
-          </p>
-          <p>
+          </motion.p>
+          <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+            Bringing forth expertise in design, installation, testing and maintenance of Mobile Apps. Equipped with a diverse and promising skill-set including <strong className="text-primary dark:text-white font-semibold">Flutter, Dart, Swift, Java, and .NET Core</strong>.
+          </motion.p>
+          <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
             Able to effectively self-manage during independent projects, as well as collaborate in a team setting. I don't just write code; I craft digital experiences that feel smooth, intuitive, and alive.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </motion.div>
     </section>
   );

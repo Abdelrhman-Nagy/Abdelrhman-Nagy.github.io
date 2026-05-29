@@ -49,8 +49,8 @@ export function ExperienceSection() {
             <div className="md:w-1/4 text-zinc-500 font-mono text-sm mt-1">
               {exp.period}
             </div>
-            <div className="md:w-3/4 relative pl-4 md:pl-8 border-l border-black/10 dark:border-white/10 group-hover:border-black/30 dark:group-hover:border-white/30 transition-colors">
-              <div className="absolute w-2 h-2 bg-zinc-300 dark:bg-zinc-700 group-hover:bg-black dark:group-hover:bg-white rounded-full -left-[5px] top-2 transition-colors" />
+            <div className="md:w-3/4 relative pl-4 md:pl-8 border-l border-black/10 dark:border-white/10 group-hover:border-primary transition-colors">
+              <div className="absolute w-2 h-2 bg-zinc-300 dark:bg-zinc-700 group-hover:bg-primary rounded-full -left-[5px] top-2 transition-colors" />
               <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-1">{exp.role}</h3>
               <h4 className="text-lg text-zinc-600 dark:text-zinc-400 mb-4">{exp.company}</h4>
               <p className="text-zinc-600 dark:text-zinc-500 leading-relaxed">

@@ -26,6 +26,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project]);
 
+  // Auto-scroll (slideshow) effect
+  useEffect(() => {
+    if (!project || project.images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % project.images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [project, currentIndex]);
+
   const handleNext = () => {
     if (project) {
       setCurrentIndex((prev) => (prev + 1) % project.images.length);
@@ -35,6 +44,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const handlePrev = () => {
     if (project) {
       setCurrentIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    }
+  };
+
+  const handleDragEnd = (e: any, { offset, velocity }: any) => {
+    const swipe = offset.x;
+    if (swipe < -50) {
+      handleNext();
+    } else if (swipe > 50) {
+      handlePrev();
     }
   };
 
@@ -53,10 +71,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             layoutId={`card-${project.id}`}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
           >
-            <div className="bg-zinc-50 dark:bg-[#0a0a0c] w-full max-w-6xl max-h-[90vh] rounded-[2rem] md:rounded-[3rem] overflow-y-auto pointer-events-auto shadow-2xl ring-1 ring-black/5 dark:ring-white/10 relative hide-scrollbar text-zinc-900 dark:text-white">
+            <div className="bg-zinc-50 dark:bg-charcoal w-full max-w-6xl max-h-[90vh] rounded-[2rem] md:rounded-[3rem] overflow-y-auto pointer-events-auto shadow-2xl ring-1 ring-black/5 dark:ring-white/10 relative hide-scrollbar text-zinc-900 dark:text-zinc-100">
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 z-50 p-2 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full backdrop-blur-md transition-colors"
+                className="absolute top-6 right-6 z-50 p-2 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-primary/20 rounded-full backdrop-blur-md transition-colors"
               >
                 <X className="w-6 h-6 text-zinc-900 dark:text-white" />
               </button>
@@ -85,8 +103,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 </div>
 
-                <div className="w-full lg:w-1/2 bg-zinc-100/50 dark:bg-zinc-950/50 p-8 md:p-12 relative flex flex-col items-center justify-center min-h-[50vh]">
-                  <div className="w-full max-w-[320px] relative group aspect-[1/2.1] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-black">
+                <div className="w-full lg:w-1/2 bg-secondary/5 dark:bg-black/40 p-8 md:p-12 relative flex flex-col items-center justify-center min-h-[50vh]">
+                  <div className="w-full max-w-[320px] relative group aspect-[1/2.1] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-zinc-200 dark:border-charcoal bg-zinc-100 dark:bg-black">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentIndex}
@@ -94,13 +112,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
                         transition={{ duration: 0.3 }}
-                        className="absolute inset-0"
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={handleDragEnd}
+                        className="absolute inset-0 cursor-grab active:cursor-grabbing"
                       >
                         <Image
                           src={project.images[currentIndex]}
                           alt={`${project.title} screenshot ${currentIndex + 1}`}
                           fill
-                          className="object-cover"
+                          className="object-cover pointer-events-none"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       </motion.div>
@@ -134,8 +156,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                           onClick={() => setCurrentIndex(idx)}
                           className={`h-2 rounded-full transition-all duration-300 ${
                             idx === currentIndex 
-                              ? "w-8 bg-zinc-800 dark:bg-white" 
-                              : "w-2 bg-zinc-300 hover:bg-zinc-400 dark:bg-white/20 dark:hover:bg-white/40"
+                              ? "w-8 bg-primary dark:bg-primary" 
+                              : "w-2 bg-zinc-300 hover:bg-zinc-400 dark:bg-white/20 dark:hover:bg-primary/50"
                           }`}
                           aria-label={`Go to slide ${idx + 1}`}
                         />

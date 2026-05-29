@@ -21,8 +21,15 @@ export function ContactSection() {
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center text-center"
       >
-        <h2 className="text-4xl md:text-6xl font-bold font-display tracking-tight mb-6">Let's build together.</h2>
-        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mb-12">
+        <motion.h2 
+          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+          transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+          style={{ backgroundSize: "200% auto" }}
+          className="text-4xl md:text-6xl font-bold font-display tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary dark:from-white dark:via-zinc-400 dark:to-white"
+        >
+          Let's build together.
+        </motion.h2>
+        <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mb-12">
           Available for new opportunities. Whether you have a project to discuss or just want to say hi, my inbox is open.
         </p>
 

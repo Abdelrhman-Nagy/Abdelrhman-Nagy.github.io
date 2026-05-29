@@ -9,6 +9,26 @@
   --color-zinc-950: #0a0a0b;
   --color-zinc-900: #121214;
   --color-zinc-800: #27272a;
+
+  /* Custom Color Palette */
+  --color-primary: #618985; /* Deep Teal */
+  --color-primary-hover: #4c6e6b;
+  --color-secondary: #77567A; /* Dusty Lavender */
+  --color-secondary-hover: #5e4261;
+  --color-charcoal: #414535; /* Charcoal Brown */
+
+  --animate-gradient-x: gradient-x 6s ease infinite;
+  
+  @keyframes gradient-x {
+    0%, 100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
 }
 
 @layer base {

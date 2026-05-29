@@ -21,7 +21,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
       onMouseLeave={() => setIsHovered(false)}
       className="group relative cursor-pointer overflow-hidden rounded-3xl glass-card flex flex-col h-[500px] sm:h-[600px] w-full"
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 group-hover:from-primary/90 transition-colors duration-500" />
       
       <div className="flex-1 w-full h-full relative p-6">
         {project.images.length > 0 && (
@@ -43,7 +43,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
       <div className="relative z-20 p-6 md:p-8 flex flex-col justify-end h-auto">
         <motion.h3 
           layoutId={`title-${project.id}`}
-          className="text-2xl md:text-3xl font-bold mb-2 tracking-tight"
+          className="text-2xl md:text-3xl font-bold mb-2 tracking-tight text-white"
         >
           {project.title}
         </motion.h3>

@@ -11,7 +11,7 @@ export function SkillChip({ label }: SkillChipProps) {
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="glass px-4 py-2 rounded-full text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-default"
+      className="glass px-4 py-2 rounded-full text-sm font-medium text-secondary hover:text-white dark:text-zinc-300 dark:hover:text-white hover:bg-secondary dark:hover:bg-secondary transition-colors cursor-default border-secondary/20"
     >
       {label}
     </motion.div>
